@@ -1,16 +1,20 @@
 import React, { Component } from 'react'
-import { devMockData } from './mocks'
 
 const SubmissionContext = React.createContext()
 
 class SubmissionProvider extends Component {
   state = {
     activeSort: 'newest',
-    submissions: devMockData
+    submissions: []
   }
 
   componentDidMount() {
-    this.sortSubmissions(this.state.activeSort)
+    fetch("https://api.myjson.com/bins/jpfmg")
+      .then((res) => res.json())
+      .then((jsonResponse) => {
+        this.setState(() => ({ submissions: jsonResponse }),
+          () => this.sortSubmissions(this.state.activeSort))
+      })
   }
 
   sortSubmissions = (sortParam) => {
