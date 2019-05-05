@@ -16,9 +16,6 @@ This application provides functionality for viewing the contributions in two vie
 - To run project do `npm start`
 - To build for production do `npm run build`
 
-### Please Note
-To see the map view with standard functionalities of google maps, change the `API KEY` value in the `fotos-submission-evaluation/src/components/MapView.js` file at line number #11.
-
 ### Photo View
 ![Fotoquest Contribution Evaluator](evaluator_photo_view.png?raw=true "Application Screen")
 
