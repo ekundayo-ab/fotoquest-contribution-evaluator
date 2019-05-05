@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export default function SubmissionDetail({submission}) {
   const { location, platform, timestamp } = submission
@@ -23,4 +24,20 @@ export default function SubmissionDetail({submission}) {
       <p className="lead">{new Date(timestamp).toUTCString()}</p>
     </React.Fragment>
   )
+}
+
+SubmissionDetail.propTypes = {
+  submission: PropTypes.shape({
+    location: PropTypes.shape({
+      lat: PropTypes.string,
+      lon: PropTypes.string
+    }),
+    platform: PropTypes.shape({
+      app: PropTypes.string,
+      appversion: PropTypes.string,
+      device: PropTypes.string,
+      os: PropTypes.string
+    }),
+    timestamp: PropTypes.string
+  }).isRequired
 }

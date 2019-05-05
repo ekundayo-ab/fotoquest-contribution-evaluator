@@ -31,6 +31,8 @@ class SubmissionProvider extends Component {
         if (prev.timestamp > next.timestamp) return 1;
         return 0;
       }
+
+      return 0
     })
 
     this.setState(() => {

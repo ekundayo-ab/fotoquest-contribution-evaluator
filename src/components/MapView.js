@@ -1,6 +1,7 @@
 import React from 'react'
 import { Map, GoogleApiWrapper } from 'google-maps-react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 const mapStyles = {
   width: '100%',
@@ -28,7 +29,12 @@ MapView.Container = styled.div`
   }
 `
 
+MapView.propTypes = {
+  lat: PropTypes.string.isRequired,
+  lon: PropTypes.string.isRequired
+}
+
 export default GoogleApiWrapper({
   //TODO: This should be in an environment file
-  apiKey: "AIzaSyDqZbfR14FtoOm5RH2fF9rLKJnqn2mGOI0"
+  apiKey: process.env.REACT_APP_GOOGLE_API_KEY
 })(MapView)

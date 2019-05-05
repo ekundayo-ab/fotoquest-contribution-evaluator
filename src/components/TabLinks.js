@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 export default function TabLinks({submissionId}) {
   return (
@@ -10,6 +11,10 @@ export default function TabLinks({submissionId}) {
     </TabLinks.Container>
   )
 };
+
+TabLinks.propTypes = {
+  submissionId: PropTypes.string.isRequired
+}
 
 TabLinks.Container = styled.div`
   background: var(--mainWhite);

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 export default function PhotoView({ photos }) {
   return (
@@ -19,6 +20,13 @@ export default function PhotoView({ photos }) {
       }
     </PhotoView.Container>
   )
+}
+
+PhotoView.propTypes = {
+  photos: PropTypes.arrayOf(PropTypes.shape({
+    direction: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired
+  })).isRequired
 }
 
 PhotoView.Container = styled.div`
