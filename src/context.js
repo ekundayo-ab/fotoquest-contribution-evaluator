@@ -5,7 +5,10 @@ const SubmissionContext = React.createContext()
 class SubmissionProvider extends Component {
   state = {
     activeSort: 'newest',
-    submissions: []
+    submissions: [],
+    comment: '',
+    evaluationOptions: '',
+    formError: false
   }
 
   componentDidMount() {
@@ -53,11 +56,45 @@ class SubmissionProvider extends Component {
       : this.setState({ [name]: value })
   }
 
+  handleSubmit = (event, submissionId) => {
+    event.preventDefault()
+
+    const { comment, evaluationOptions } = this.state
+
+    if (!evaluationOptions) {
+      return this.setState(() => ({ formError: true }))
+    };
+
+    const submission = {
+      id: submissionId,
+      evaluation: evaluationOptions,
+      comment
+    }
+
+    fetch('https://demo0929535.mockable.io/evaluate', {
+      method: 'post',
+      body: JSON.stringify(submission)
+    })
+    .then(response => response.json())
+    .then((data) => {
+      if (data.msg === 'Created.') {
+        this.setState(() => {
+          return {
+            comment: '',
+            evaluationOptions: '',
+            formError: false
+          }
+        })
+      }
+    });
+  }
+
   render() {
     return (
       <SubmissionContext.Provider value={{
         ...this.state,
         handleChange: this.handleChange,
+        handleSubmit: this.handleSubmit,
         sortSubmissions: this.sortSubmissions
       }}>
         {this.props.children}

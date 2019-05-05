@@ -57,7 +57,7 @@ function App() {
 
                 <div className="col-md-12 col-lg-4 col-12">
                   <SubmissionDetail submission={mockData} />
-                  <EvaluationForm />
+                  <EvaluationForm submissionId={mockData.id} />
                 </div>
               </SubmissionCard>
             )
