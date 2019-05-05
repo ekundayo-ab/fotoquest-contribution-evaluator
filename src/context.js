@@ -9,14 +9,50 @@ class SubmissionProvider extends Component {
     submissions: devMockData
   }
 
-  sortSubmissions = sortType => {
+  componentDidMount() {
+    this.sortSubmissions(this.state.activeSort)
+  }
 
+  sortSubmissions = (sortParam) => {
+    let sortType = sortParam
+    if (typeof sortType === 'object') {
+      sortType = sortParam.target.value
+    }
+
+    const sortedSubmissions  = this.state.submissions.slice(0).sort((prev, next) => {
+      if (sortType === 'newest') {
+        if (prev.timestamp < next.timestamp) return 1;
+        if (prev.timestamp > next.timestamp) return -1;
+        return 0;
+      }
+
+      if (sortType === 'oldest') {
+        if (prev.timestamp < next.timestamp) return -1;
+        if (prev.timestamp > next.timestamp) return 1;
+        return 0;
+      }
+    })
+
+    this.setState(() => {
+      return {
+        submissions: sortedSubmissions,
+        activeSort: sortType
+      }
+    })
+  }
+
+  handleChange = (event) => {
+    const { name, value, type, checked } = event.target
+    type === 'checkbox' ? this.setState({ [name]: checked })
+      : this.setState({ [name]: value })
   }
 
   render() {
     return (
       <SubmissionContext.Provider value={{
-        ...this.state
+        ...this.state,
+        handleChange: this.handleChange,
+        sortSubmissions: this.sortSubmissions
       }}>
         {this.props.children}
       </SubmissionContext.Provider>
