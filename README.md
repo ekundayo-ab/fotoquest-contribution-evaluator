@@ -5,6 +5,7 @@ This application provides functionality for viewing the contributions in two vie
 
 ### Requirements
 - NodeJS and NPM
+- Ensure you rename the `.env.sample` file to `.env` and prefill in your Google Maps API key into the field provided in the renamed `.env` file
 
 ### Installation
 - Clone this repository `git clone`

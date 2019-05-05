@@ -8,7 +8,7 @@ export const MapView = ({ lat, lon }) => {
     <div className="row">
       <MapView.Container className="col-12 p-0">
         <GoogleMapReact
-          bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_API_KEY }} //TODO: This should be in an environment file
+          bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_API_KEY }}
           defaultCenter={{ lat: parseFloat(lat), lng: parseFloat(lon) }}
           defaultZoom={11}
           options={(maps) => ({
