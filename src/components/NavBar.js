@@ -11,4 +11,10 @@ export default function NavBar() {
 
 NavBar.Container = styled.nav`
   background: rgba(255,255,255,0.7) !important;
+
+  a {
+    @media screen and (max-width: 480px) {
+      font-size: 0.9rem;
+    }
+  }
 `
