@@ -1,7 +1,7 @@
 # FotoQuest Go Contributions Evaluator
 An application for evaluating the FotoQuest Go Contributions
 
-This application provides functionality for viewing the contributions in two views and also ensures comments can be sent to users after evaluation.
+This application provides functionality for viewing the contributions in two views and also ensures comments can be sent to users after evaluation. Live link here https://fotoquest-evaluator.netlify.com
 
 ### Requirements
 - NodeJS and NPM
