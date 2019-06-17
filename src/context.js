@@ -53,10 +53,14 @@ class SubmissionProvider extends Component {
   handleChange = (event) => {
     const { name, value, type, checked } = event.target
     type === 'checkbox' ? this.setState({ [name]: checked })
-      : this.setState({ [name]: value })
+    : this.setState({ [name]: value })
   }
 
   handleSubmit = (event, submissionId) => {
+    // https://stackoverflow.com/a/54184122/4190364
+    // why this 👇? event.target might not be available by the time the asynchronous setState function is completed.
+    const form = event.target
+
     event.preventDefault()
 
     const { comment, evaluationOptions } = this.state
@@ -78,6 +82,7 @@ class SubmissionProvider extends Component {
     .then(response => response.json())
     .then((data) => {
       if (data.msg === 'Created.') {
+        form.reset();
         this.setState(() => {
           return {
             comment: '',
